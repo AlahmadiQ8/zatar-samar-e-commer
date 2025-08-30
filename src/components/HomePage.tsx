@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Loader2 } from 'lucide-react';
 import { Product } from '@/lib/types';
 import { fetchProducts } from '@/lib/shopify';
+import logoSvg from '@/assets/images/logo-placeholder.svg';
 
 export function HomePage() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -61,8 +62,8 @@ export function HomePage() {
       {/* Hero Section */}
       <section className="text-center mb-12">
         <div className="max-w-3xl mx-auto">
-          <div className="w-24 h-24 bg-primary rounded-full mx-auto mb-6 flex items-center justify-center">
-            <span className="text-primary-foreground font-bold text-3xl">ز</span>
+          <div className="w-24 h-24 mx-auto mb-6 flex items-center justify-center">
+            <img src={logoSvg} alt="زعتر سمر" className="w-full h-full object-contain" />
           </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
             زعتر سمر
