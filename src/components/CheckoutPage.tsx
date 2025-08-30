@@ -194,28 +194,29 @@ export function CheckoutPage() {
                   onValueChange={(value: 'delivery' | 'pickup') => 
                     setCustomerInfo(prev => ({ ...prev, deliveryMethod: value }))
                   }
+                  className="gap-4"
                 >
-                  <div className="flex items-center gap-3">
-                    <RadioGroupItem value="delivery" id="delivery" />
+                  <div className="flex items-center gap-3 flex-row-reverse">
                     <Label htmlFor="delivery" className="flex-1 cursor-pointer">
-                      <div>
+                      <div className="text-right">
                         <div className="font-medium">توصيل</div>
                         <div className="text-sm text-muted-foreground">
                           رسوم التوصيل حسب المنطقة
                         </div>
                       </div>
                     </Label>
+                    <RadioGroupItem value="delivery" id="delivery" />
                   </div>
-                  <div className="flex items-center gap-3">
-                    <RadioGroupItem value="pickup" id="pickup" />
+                  <div className="flex items-center gap-3 flex-row-reverse">
                     <Label htmlFor="pickup" className="flex-1 cursor-pointer">
-                      <div>
+                      <div className="text-right">
                         <div className="font-medium">استلام من المتجر</div>
                         <div className="text-sm text-muted-foreground">
                           {pickup.address}
                         </div>
                       </div>
                     </Label>
+                    <RadioGroupItem value="pickup" id="pickup" />
                   </div>
                 </RadioGroup>
                 
@@ -236,14 +237,15 @@ export function CheckoutPage() {
                   onValueChange={(value: 'cash' | 'online') => 
                     setCustomerInfo(prev => ({ ...prev, paymentMethod: value }))
                   }
+                  className="gap-4"
                 >
-                  <div className="flex items-center gap-3">
-                    <RadioGroupItem value="cash" id="cash" />
+                  <div className="flex items-center gap-3 flex-row-reverse">
                     <Label htmlFor="cash" className="cursor-pointer">كاش</Label>
+                    <RadioGroupItem value="cash" id="cash" />
                   </div>
-                  <div className="flex items-center gap-3">
-                    <RadioGroupItem value="online" id="online" />
+                  <div className="flex items-center gap-3 flex-row-reverse">
                     <Label htmlFor="online" className="cursor-pointer">أونلاين (عن طريق Link)</Label>
+                    <RadioGroupItem value="online" id="online" />
                   </div>
                 </RadioGroup>
               </div>
