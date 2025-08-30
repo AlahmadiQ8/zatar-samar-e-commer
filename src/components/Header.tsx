@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { ShoppingCart, Phone } from '@phosphor-icons/react';
+import { ShoppingCart, Phone, InstagramLogo } from '@phosphor-icons/react';
 import { useCart } from '@/hooks/useCart';
 
 export function Header() {
@@ -12,6 +12,10 @@ export function Header() {
 
   const handleWhatsAppContact = () => {
     window.open('https://wa.me/+96565544219', '_blank');
+  };
+
+  const handleInstagramContact = () => {
+    window.open('https://instagram.com/zatarsamar', '_blank');
   };
 
   return (
@@ -30,6 +34,17 @@ export function Header() {
 
         {/* Actions */}
         <div className="flex items-center gap-2">
+          {/* Instagram Contact */}
+          <Button 
+            variant="outline" 
+            size="sm"
+            onClick={handleInstagramContact}
+            className="hidden sm:flex items-center gap-2"
+          >
+            <InstagramLogo className="w-4 h-4" />
+            <span>انستجرام</span>
+          </Button>
+
           {/* WhatsApp Contact */}
           <Button 
             variant="outline" 
@@ -59,7 +74,16 @@ export function Header() {
             )}
           </Button>
 
-          {/* Mobile WhatsApp */}
+          {/* Mobile Social Buttons */}
+          <Button 
+            variant="ghost" 
+            size="sm"
+            onClick={handleInstagramContact}
+            className="sm:hidden"
+          >
+            <InstagramLogo className="w-5 h-5" />
+          </Button>
+
           <Button 
             variant="ghost" 
             size="sm"
