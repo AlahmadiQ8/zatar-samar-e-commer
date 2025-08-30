@@ -198,15 +198,16 @@ export function ProductPage() {
                   className="space-y-2"
                 >
                   {product.variants.map((variant) => (
-                    <div key={variant.id} className="flex items-center space-x-2 space-x-reverse">
+                    <div key={variant.id} className="flex items-center gap-3">
                       <RadioGroupItem
                         value={variant.id}
                         id={variant.id}
                         disabled={!variant.availableForSale}
+                        className="order-1"
                       />
                       <Label
                         htmlFor={variant.id}
-                        className="flex-1 flex justify-between items-center cursor-pointer"
+                        className="flex-1 flex justify-between items-center cursor-pointer order-2"
                       >
                         <span>{variant.title}</span>
                         <span className="arabic-number text-sm font-medium">
