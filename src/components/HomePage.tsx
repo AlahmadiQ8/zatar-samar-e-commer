@@ -60,9 +60,9 @@ export function HomePage() {
   return (
     <div className="container mx-auto px-4 py-8">
       {/* Hero Section */}
-      <section className="text-center mb-12">
+      <section className="text-center mb-4 md:mb-8">
         <div className="max-w-3xl mx-auto">
-          <div className="w-24 h-24 mx-auto mb-6 flex items-center justify-center">
+          <div className="w-24 h-24 md:w-32 md:h-32 mx-auto mb-6 flex items-center justify-center">
             <img src={logoSvg} alt="زعتر سمر" className="w-full h-full object-contain" />
           </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
@@ -71,21 +71,13 @@ export function HomePage() {
           <p className="text-xl text-muted-foreground mb-6">
             منتجات شامية أصيلة من أجود المكونات الطبيعية
           </p>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            اكتشف نكهات بلاد الشام الأصيلة مع مجموعتنا المميزة من الزعتر وزيت الزيتون والتوابل الطبيعية
-          </p>
         </div>
       </section>
 
       {/* Products Section */}
       <section>
-        <div className="flex items-center justify-between mb-8">
-          <div>
+        <div className="flex items-center justify-between mb-4">
             <h2 className="text-2xl font-bold mb-2">منتجاتنا</h2>
-            <p className="text-muted-foreground">
-              اختر من تشكيلة متنوعة من المنتجات الشامية الأصيلة
-            </p>
-          </div>
         </div>
 
         {products.length === 0 ? (
