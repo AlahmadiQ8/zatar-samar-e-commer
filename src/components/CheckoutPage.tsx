@@ -196,7 +196,7 @@ export function CheckoutPage() {
                   }
                   className="gap-4"
                 >
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-3 flex-row-reverse">
                     <RadioGroupItem value="delivery" id="delivery" />
                     <Label htmlFor="delivery" className="flex-1 cursor-pointer">
                       <div className="text-right">
@@ -207,7 +207,7 @@ export function CheckoutPage() {
                       </div>
                     </Label>
                   </div>
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-3 flex-row-reverse">
                     <RadioGroupItem value="pickup" id="pickup" />
                     <Label htmlFor="pickup" className="flex-1 cursor-pointer">
                       <div className="text-right">
@@ -239,11 +239,11 @@ export function CheckoutPage() {
                   }
                   className="gap-4"
                 >
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-3 flex-row-reverse">
                     <RadioGroupItem value="cash" id="cash" />
                     <Label htmlFor="cash" className="cursor-pointer">كاش</Label>
                   </div>
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-3 flex-row-reverse">
                     <RadioGroupItem value="online" id="online" />
                     <Label htmlFor="online" className="cursor-pointer">أونلاين (عن طريق Link)</Label>
                   </div>
