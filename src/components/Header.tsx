@@ -4,6 +4,8 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ShoppingCart, Phone, InstagramLogo } from '@phosphor-icons/react';
 import { useCart } from '@/hooks/useCart';
+// Replace this placeholder import with your actual logo PNG file
+import logoPlaceholder from '@/assets/images/logo-placeholder.svg';
 
 export function Header() {
   const { getTotalItems, toggleCart } = useCart();
@@ -23,9 +25,11 @@ export function Header() {
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         {/* Logo and Brand */}
         <Link to="/" className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-            <span className="text-primary-foreground font-bold text-lg">ز</span>
-          </div>
+          <img 
+            src={logoPlaceholder} 
+            alt="زعتر سمر - شعار" 
+            className="w-10 h-10 object-contain"
+          />
           <div>
             <h1 className="text-xl font-bold text-foreground">زعتر سمر</h1>
             <p className="text-sm text-muted-foreground">منتجات شامية أصيلة</p>
