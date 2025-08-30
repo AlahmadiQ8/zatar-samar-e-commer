@@ -195,7 +195,7 @@ export function CheckoutPage() {
                     setCustomerInfo(prev => ({ ...prev, deliveryMethod: value }))
                   }
                 >
-                  <div className="flex items-center space-x-2 space-x-reverse">
+                  <div className="flex items-center gap-3">
                     <RadioGroupItem value="delivery" id="delivery" />
                     <Label htmlFor="delivery" className="flex-1 cursor-pointer">
                       <div>
@@ -206,7 +206,7 @@ export function CheckoutPage() {
                       </div>
                     </Label>
                   </div>
-                  <div className="flex items-center space-x-2 space-x-reverse">
+                  <div className="flex items-center gap-3">
                     <RadioGroupItem value="pickup" id="pickup" />
                     <Label htmlFor="pickup" className="flex-1 cursor-pointer">
                       <div>
@@ -237,11 +237,11 @@ export function CheckoutPage() {
                     setCustomerInfo(prev => ({ ...prev, paymentMethod: value }))
                   }
                 >
-                  <div className="flex items-center space-x-2 space-x-reverse">
+                  <div className="flex items-center gap-3">
                     <RadioGroupItem value="cash" id="cash" />
                     <Label htmlFor="cash" className="cursor-pointer">كاش</Label>
                   </div>
-                  <div className="flex items-center space-x-2 space-x-reverse">
+                  <div className="flex items-center gap-3">
                     <RadioGroupItem value="online" id="online" />
                     <Label htmlFor="online" className="cursor-pointer">أونلاين (عن طريق Link)</Label>
                   </div>
