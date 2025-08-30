@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Navigate } from 'react-router-dom';
+import { useParams, Navigate, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -9,12 +9,13 @@ import { Label } from '@/components/ui/label';
 import { Plus, Minus, ShoppingCart, Loader2 } from 'lucide-react';
 import { Product, ProductVariant } from '@/lib/types';
 import { fetchProduct } from '@/lib/shopify';
-import { formatPrice, generateWhatsAppUrl } from '@/lib/whatsapp';
+import { formatPrice } from '@/lib/whatsapp';
 import { useCart } from '@/hooks/useCart';
 
 export function ProductPage() {
   const { handle } = useParams<{ handle: string }>();
   const { addItem } = useCart();
+  const navigate = useNavigate();
   
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
@@ -97,9 +98,10 @@ export function ProductPage() {
     }
   };
 
-  const handleQuickOrder = () => {
+  const handleGoToCheckout = () => {
     if (canAddToCart) {
-      const cartItems = [{
+      // First add the item to cart
+      addItem({
         productHandle: product.handle,
         productTitle: product.title,
         variantId: selectedVariant.id,
@@ -107,17 +109,9 @@ export function ProductPage() {
         price: parseFloat(selectedVariant.price.amount),
         quantity,
         image: product.featuredImage?.url
-      }];
-
-      const customerInfo = {
-        name: '',
-        deliveryMethod: 'delivery' as const,
-        paymentMethod: 'cash' as const
-      };
-
-      const subtotal = parseFloat(selectedVariant.price.amount) * quantity;
-      const whatsappUrl = generateWhatsAppUrl(cartItems, customerInfo, subtotal);
-      window.open(whatsappUrl, '_blank');
+      });
+      // Then navigate to checkout
+      navigate('/checkout');
     }
   };
 
@@ -261,14 +255,14 @@ export function ProductPage() {
             </Button>
             
             <Button
-              onClick={handleQuickOrder}
+              onClick={handleGoToCheckout}
               disabled={!canAddToCart}
               variant="outline"
               className="w-full gap-2"
               size="lg"
             >
-              <span>📱</span>
-              طلب سريع عبر الواتساب
+              <ShoppingCart className="w-5 h-5" />
+              الذهاب إلى السلة
             </Button>
           </div>
 
