@@ -208,10 +208,10 @@ export function ProductPage() {
                         htmlFor={variant.id}
                         className="flex-1 flex justify-between items-center cursor-pointer"
                       >
-                        <span>{variant.title}</span>
                         <span className="arabic-number text-sm font-medium">
                           {formatPrice(variant.price.amount)}
                         </span>
+                        <span>{variant.title}</span>
                       </Label>
                     </div>
                   ))}
