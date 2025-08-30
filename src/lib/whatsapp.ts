@@ -85,8 +85,8 @@ export function formatPrice(amount: string | number, currencyCode: string = 'KWD
 
 // Get pickup location with Google Maps link
 export function getPickupLocation(): { address: string; mapsUrl: string } {
-  const address = 'السالمية، قطعة 3، شارع 308، منزل 7';
-  const mapsUrl = 'https://maps.google.com?q=السالمية،+قطعة+3،+شارع+308،+منزل+7';
+  const address = 'الفنيطيس، قطعة 3، شارع 308، منزل 7';
+  const mapsUrl = 'https://goo.gl/maps/H887haRhckgJNgep9';
   
   return { address, mapsUrl };
 }

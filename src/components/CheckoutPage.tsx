@@ -78,7 +78,6 @@ export function CheckoutPage() {
           راجع طلبك وأدخل بياناتك لإرسال الطلب عبر الواتساب
         </p>
       </div>
-
       <div className="grid lg:grid-cols-3 gap-8">
         {/* Order Summary */}
         <div className="lg:col-span-2">
@@ -222,9 +221,7 @@ export function CheckoutPage() {
                 
                 {customerInfo.deliveryMethod === 'pickup' && (
                   <Button variant="outline" size="sm" asChild>
-                    <a href={pickup.mapsUrl} target="_blank" rel="noopener noreferrer">
-                      عرض الموقع على الخريطة
-                    </a>
+                    <a href={pickup.mapsUrl} target="_blank" rel="noopener noreferrer">عرض الموقع على الخريطة</a>
                   </Button>
                 )}
               </div>
