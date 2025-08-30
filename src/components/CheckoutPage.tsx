@@ -196,7 +196,8 @@ export function CheckoutPage() {
                   }
                   className="gap-4"
                 >
-                  <div className="flex items-center gap-3 flex-row-reverse">
+                  <div className="flex items-center gap-3">
+                    <RadioGroupItem value="delivery" id="delivery" />
                     <Label htmlFor="delivery" className="flex-1 cursor-pointer">
                       <div className="text-right">
                         <div className="font-medium">توصيل</div>
@@ -205,9 +206,9 @@ export function CheckoutPage() {
                         </div>
                       </div>
                     </Label>
-                    <RadioGroupItem value="delivery" id="delivery" />
                   </div>
-                  <div className="flex items-center gap-3 flex-row-reverse">
+                  <div className="flex items-center gap-3">
+                    <RadioGroupItem value="pickup" id="pickup" />
                     <Label htmlFor="pickup" className="flex-1 cursor-pointer">
                       <div className="text-right">
                         <div className="font-medium">استلام من المتجر</div>
@@ -216,7 +217,6 @@ export function CheckoutPage() {
                         </div>
                       </div>
                     </Label>
-                    <RadioGroupItem value="pickup" id="pickup" />
                   </div>
                 </RadioGroup>
                 
@@ -239,13 +239,13 @@ export function CheckoutPage() {
                   }
                   className="gap-4"
                 >
-                  <div className="flex items-center gap-3 flex-row-reverse">
-                    <Label htmlFor="cash" className="cursor-pointer">كاش</Label>
+                  <div className="flex items-center gap-3">
                     <RadioGroupItem value="cash" id="cash" />
+                    <Label htmlFor="cash" className="cursor-pointer">كاش</Label>
                   </div>
-                  <div className="flex items-center gap-3 flex-row-reverse">
-                    <Label htmlFor="online" className="cursor-pointer">أونلاين (عن طريق Link)</Label>
+                  <div className="flex items-center gap-3">
                     <RadioGroupItem value="online" id="online" />
+                    <Label htmlFor="online" className="cursor-pointer">أونلاين (عن طريق Link)</Label>
                   </div>
                 </RadioGroup>
               </div>
