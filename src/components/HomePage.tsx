@@ -85,12 +85,6 @@ export function HomePage() {
               اختر من تشكيلة متنوعة من المنتجات الشامية الأصيلة
             </p>
           </div>
-          
-          <div className="text-right">
-            <p className="text-sm text-muted-foreground">
-              {products.length} منتج متوفر
-            </p>
-          </div>
         </div>
 
         {products.length === 0 ? (
