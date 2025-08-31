@@ -71,7 +71,7 @@ export function CheckoutPage() {
 
   return (
     <div className="min-h-screen py-8">
-      <div className="container mx-auto px-4 max-w-6xl">
+      <div className="container mx-auto px-2 md:px-4 max-w-6xl">
         {/* Header */}
         <div className="mb-8 text-center">
           <h1 className="text-3xl font-bold mb-2">إتمام الطلب</h1>
@@ -79,18 +79,18 @@ export function CheckoutPage() {
             راجع طلبك وأدخل بياناتك لإرسال الطلب عبر الواتساب
           </p>
         </div>
-        <div className="grid lg:grid-cols-3 gap-8 max-w-5xl mx-auto px-4">
+        <div className="grid lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
         {/* Order Summary */}
         <div className="lg:col-span-2">
           <Card>
             <CardHeader>
               <CardTitle>طلبك ({cart.items.length} منتج)</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-4 px-2">
               {cart.items.map((item) => (
-                <div key={`${item.productHandle}-${item.variantId}`} className="flex gap-4 p-4 rounded-lg border">
+                <div key={`${item.productHandle}-${item.variantId}`} className="flex w-full gap-2 p-2 rounded-lg border">
                   {/* Product Image */}
-                  <div className="w-20 h-20 bg-muted rounded-md overflow-hidden flex-shrink-0">
+                  <div className="w-1/4 h-20 bg-muted rounded-md overflow-hidden flex-shrink-0">
                     {item.image ? (
                       <img 
                         src={item.image} 
@@ -107,7 +107,7 @@ export function CheckoutPage() {
                   </div>
 
                   {/* Product Details */}
-                  <div className="flex-1 min-w-0">
+                  <div className="w-2/4 flex-1 min-w-0">
                     <h4 className="font-medium mb-1">{item.productTitle}</h4>
                     <p className="text-sm text-muted-foreground mb-3">{item.variantTitle}</p>
                     
@@ -146,7 +146,7 @@ export function CheckoutPage() {
                   </div>
 
                   {/* Price */}
-                  <div className="text-left">
+                  <div className="text-left flex-1 w-1/4">
                     <p className="font-medium arabic-number">
                       {formatPrice(item.price * item.quantity)}
                     </p>
