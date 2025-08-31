@@ -135,9 +135,7 @@ export function CartDrawer() {
                   </span>
                 </div>
                 
-                <p className="text-xs text-muted-foreground">
-                  رسوم التوصيل حسب المنطقة
-                </p>
+                <p className="text-xs text-muted-foreground">رسوم التوصيل حسب المنطقة</p>
               </div>
 
               <Separator />
