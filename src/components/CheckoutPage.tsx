@@ -70,15 +70,16 @@ export function CheckoutPage() {
   const pickup = getPickupLocation();
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-4xl">
-      {/* Header */}
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">إتمام الطلب</h1>
-        <p className="text-muted-foreground">
-          راجع طلبك وأدخل بياناتك لإرسال الطلب عبر الواتساب
-        </p>
-      </div>
-      <div className="grid lg:grid-cols-3 gap-8">
+    <div className="min-h-screen py-8">
+      <div className="container mx-auto px-6 max-w-6xl">
+        {/* Header */}
+        <div className="mb-8 text-center">
+          <h1 className="text-3xl font-bold mb-2">إتمام الطلب</h1>
+          <p className="text-muted-foreground">
+            راجع طلبك وأدخل بياناتك لإرسال الطلب عبر الواتساب
+          </p>
+        </div>
+        <div className="grid lg:grid-cols-3 gap-8 mx-auto max-w-5xl">
         {/* Order Summary */}
         <div className="lg:col-span-2">
           <Card>
@@ -299,6 +300,7 @@ export function CheckoutPage() {
             </CardContent>
           </Card>
         </div>
+      </div>
       </div>
     </div>
   );
