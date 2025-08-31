@@ -71,7 +71,7 @@ export function CheckoutPage() {
 
   return (
     <div className="min-h-screen py-8">
-      <div className="container mx-auto px-6 max-w-6xl">
+      <div className="container mx-auto px-4 max-w-6xl">
         {/* Header */}
         <div className="mb-8 text-center">
           <h1 className="text-3xl font-bold mb-2">إتمام الطلب</h1>
@@ -79,7 +79,7 @@ export function CheckoutPage() {
             راجع طلبك وأدخل بياناتك لإرسال الطلب عبر الواتساب
           </p>
         </div>
-        <div className="grid lg:grid-cols-3 gap-8 mx-auto max-w-5xl">
+        <div className="grid lg:grid-cols-3 gap-8 max-w-5xl mx-auto px-4">
         {/* Order Summary */}
         <div className="lg:col-span-2">
           <Card>
@@ -300,7 +300,7 @@ export function CheckoutPage() {
             </CardContent>
           </Card>
         </div>
-      </div>
+        </div>
       </div>
     </div>
   );
