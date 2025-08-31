@@ -111,9 +111,16 @@ export const PRODUCT_QUERY = `
 
 export async function fetchProducts(): Promise<Product[]> {
   try {
-    const { data } = await client.request(PRODUCTS_QUERY, {
+    // Timeout the request after 5 seconds to prevent infinite loading
+    const timeoutPromise = new Promise<never>((_, reject) => 
+      setTimeout(() => reject(new Error('Request timeout')), 5000)
+    );
+    
+    const requestPromise = client.request(PRODUCTS_QUERY, {
       variables: { first: 20 }
     });
+    
+    const { data } = await Promise.race([requestPromise, timeoutPromise]);
     
     return data.products.edges.map((edge: any) => ({
       id: edge.node.id,
@@ -126,7 +133,7 @@ export async function fetchProducts(): Promise<Product[]> {
       priceRange: edge.node.priceRange,
     }));
   } catch (error) {
-    console.error('Error fetching products:', error);
+    console.warn('Shopify API unavailable, using mock data:', error);
     // Return mock data for development
     return getMockProducts();
   }
@@ -134,9 +141,16 @@ export async function fetchProducts(): Promise<Product[]> {
 
 export async function fetchProduct(handle: string): Promise<Product | null> {
   try {
-    const { data } = await client.request(PRODUCT_QUERY, {
+    // Timeout the request after 5 seconds to prevent infinite loading
+    const timeoutPromise = new Promise<never>((_, reject) => 
+      setTimeout(() => reject(new Error('Request timeout')), 5000)
+    );
+    
+    const requestPromise = client.request(PRODUCT_QUERY, {
       variables: { handle }
     });
+    
+    const { data } = await Promise.race([requestPromise, timeoutPromise]);
     
     if (!data.product) return null;
     
@@ -151,7 +165,7 @@ export async function fetchProduct(handle: string): Promise<Product | null> {
       priceRange: data.product.priceRange,
     };
   } catch (error) {
-    console.error('Error fetching product:', error);
+    console.warn('Shopify API unavailable, using mock data:', error);
     // Return mock data for development
     const mockProducts = getMockProducts();
     return mockProducts.find(p => p.handle === handle) || null;

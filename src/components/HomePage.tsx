@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ProductCard } from '@/components/ProductCard';
 import { Button } from '@/components/ui/button';
-import { Loader2 } from 'lucide-react';
+import { Loader2, RefreshCw } from 'lucide-react';
 import { Product } from '@/lib/types';
 import { fetchProducts } from '@/lib/shopify';
 import logoSvg from '@/assets/images/logo-placeholder.svg';
@@ -15,51 +15,43 @@ export function HomePage() {
     async function loadProducts() {
       try {
         setLoading(true);
+        setError(null);
         const fetchedProducts = await fetchProducts();
         setProducts(fetchedProducts);
-        setError(null);
       } catch (err) {
         setError('حدث خطأ في تحميل المنتجات');
         console.error('Error loading products:', err);
+        // Set empty products array so UI still renders
+        setProducts([]);
       } finally {
         setLoading(false);
       }
     }
 
-    loadProducts();
+    // Add a small delay to ensure UI renders first
+    const timeoutId = setTimeout(() => {
+      loadProducts();
+    }, 100);
+
+    return () => clearTimeout(timeoutId);
   }, []);
 
-  if (loading) {
-    return (
-      <div className="min-h-[60vh] flex items-center justify-center">
-        <div className="text-center">
-          <Loader2 className="w-8 h-8 animate-spin mx-auto mb-4" />
-          <p className="text-muted-foreground">جاري تحميل المنتجات...</p>
-        </div>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="min-h-[60vh] flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-20 h-20 bg-destructive/10 rounded-full mx-auto mb-4 flex items-center justify-center">
-            <span className="text-3xl">⚠️</span>
-          </div>
-          <h3 className="text-lg font-medium mb-2">خطأ في التحميل</h3>
-          <p className="text-muted-foreground mb-4">{error}</p>
-          <Button onClick={() => window.location.reload()}>
-            إعادة المحاولة
-          </Button>
-        </div>
-      </div>
-    );
-  }
+  const retryLoad = () => {
+    setError(null);
+    setLoading(true);
+    fetchProducts()
+      .then(setProducts)
+      .catch((err) => {
+        setError('حدث خطأ في تحميل المنتجات');
+        console.error('Error loading products:', err);
+        setProducts([]);
+      })
+      .finally(() => setLoading(false));
+  };
 
   return (
     <div className="container mx-auto px-4 py-8">
-      {/* Hero Section */}
+      {/* Hero Section - Always visible */}
       <section className="text-center mb-4 md:mb-8">
         <div className="max-w-3xl mx-auto">
           <div className="w-24 h-24 md:w-32 md:h-32 mx-auto mb-6 flex items-center justify-center">
@@ -77,10 +69,40 @@ export function HomePage() {
       {/* Products Section */}
       <section>
         <div className="flex items-center justify-between mb-4">
-            <h2 className="text-2xl font-bold mb-2">منتجاتنا</h2>
+          <h2 className="text-2xl font-bold mb-2">منتجاتنا</h2>
+          {error && (
+            <Button 
+              variant="outline" 
+              size="sm"
+              onClick={retryLoad}
+              className="gap-2"
+            >
+              <RefreshCw className="w-4 h-4" />
+              إعادة المحاولة
+            </Button>
+          )}
         </div>
 
-        {products.length === 0 ? (
+        {loading ? (
+          <div className="min-h-[40vh] flex items-center justify-center">
+            <div className="text-center">
+              <Loader2 className="w-8 h-8 animate-spin mx-auto mb-4" />
+              <p className="text-muted-foreground">جاري تحميل المنتجات...</p>
+            </div>
+          </div>
+        ) : error ? (
+          <div className="text-center py-12">
+            <div className="w-20 h-20 bg-destructive/10 rounded-full mx-auto mb-4 flex items-center justify-center">
+              <span className="text-3xl">⚠️</span>
+            </div>
+            <h3 className="text-lg font-medium mb-2">خطأ في التحميل</h3>
+            <p className="text-muted-foreground mb-4">{error}</p>
+            <Button onClick={retryLoad} className="gap-2">
+              <RefreshCw className="w-4 h-4" />
+              إعادة المحاولة
+            </Button>
+          </div>
+        ) : products.length === 0 ? (
           <div className="text-center py-12">
             <div className="w-20 h-20 bg-muted rounded-full mx-auto mb-4 flex items-center justify-center">
               <span className="text-3xl">📦</span>
