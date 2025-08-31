@@ -27,8 +27,8 @@ export function CartDrawer() {
 
   return (
     <Sheet open={isOpen} onOpenChange={setCartOpen}>
-      <SheetContent className="w-full sm:max-w-md">
-        <SheetHeader>
+      <SheetContent className="w-full sm:max-w-md" side="left">
+        <SheetHeader className="pl-8">
           <SheetTitle>سلة المشتريات</SheetTitle>
           <SheetDescription>
             {cart.items.length > 0 
