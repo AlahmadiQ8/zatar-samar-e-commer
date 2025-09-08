@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useReducer, useEffect } from 'react';
+import { toast } from 'sonner';
 import { Cart, CartItem } from '../lib/types';
 
 interface CartState {
@@ -160,6 +161,12 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   const addItem = (item: CartItem) => {
     dispatch({ type: 'ADD_ITEM', payload: item });
+    
+    // Show success toast in Arabic
+    toast.success(`تمت إضافة ${item.productTitle} إلى السلة`, {
+      description: `الكمية: ${item.quantity}`,
+      duration: 3000,
+    });
   };
 
   const removeItem = (productHandle: string, variantId: string) => {
