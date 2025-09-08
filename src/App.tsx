@@ -23,7 +23,7 @@ function App() {
           </main>
           <CartDrawer />
           <Toaster 
-            position="top-center"
+            position="bottom-center"
             dir="rtl"
             richColors
           />
