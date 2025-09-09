@@ -58,6 +58,8 @@ jobs:
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Build with Vite
+        env:
+          VITE_STORE_PUBLIC_ACCESS_TOKEN: ${{ secrets.VITE_STORE_PUBLIC_ACCESS_TOKEN }}
         run: npm run build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
