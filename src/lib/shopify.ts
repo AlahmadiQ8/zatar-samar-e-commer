@@ -1,14 +1,14 @@
 import { createStorefrontApiClient } from '@shopify/storefront-api-client';
 import { Product, ShopifyResponse } from './types';
 
-const SHOPIFY_DOMAIN = 'zatarsamar.myshopify.com';
-const STOREFRONT_TOKEN = 'demo-token'; // In production, this would come from env
-const API_VERSION = '2024-10';
+const SHOPIFY_DOMAIN = 'zatarsamarq8.myshopify.com';
+const STOREFRONT_PUBLIC_TOKEN = import.meta.env.VITE_STORE_PUBLIC_ACCESS_TOKEN;
+const API_VERSION = '2025-07';
 
 const client = createStorefrontApiClient({
   storeDomain: SHOPIFY_DOMAIN,
   apiVersion: API_VERSION,
-  publicAccessToken: STOREFRONT_TOKEN,
+  publicAccessToken: STOREFRONT_PUBLIC_TOKEN,
 });
 
 export const PRODUCTS_QUERY = `
@@ -140,36 +140,29 @@ export async function fetchProducts(): Promise<Product[]> {
 }
 
 export async function fetchProduct(handle: string): Promise<Product | null> {
-  try {
-    // Timeout the request after 5 seconds to prevent infinite loading
-    const timeoutPromise = new Promise<never>((_, reject) => 
-      setTimeout(() => reject(new Error('Request timeout')), 5000)
-    );
-    
-    const requestPromise = client.request(PRODUCT_QUERY, {
-      variables: { handle }
-    });
-    
-    const { data } = await Promise.race([requestPromise, timeoutPromise]);
-    
-    if (!data.product) return null;
-    
-    return {
-      id: data.product.id,
-      handle: data.product.handle,
-      title: data.product.title,
-      description: data.product.description,
-      featuredImage: data.product.featuredImage,
-      images: data.product.images.edges.map((img: any) => img.node),
-      variants: data.product.variants.edges.map((variant: any) => variant.node),
-      priceRange: data.product.priceRange,
-    };
-  } catch (error) {
-    console.warn('Shopify API unavailable, using mock data:', error);
-    // Return mock data for development
-    const mockProducts = getMockProducts();
-    return mockProducts.find(p => p.handle === handle) || null;
-  }
+  // Timeout the request after 5 seconds to prevent infinite loading
+  const timeoutPromise = new Promise<never>((_, reject) => 
+    setTimeout(() => reject(new Error('Request timeout')), 5000)
+  );
+  
+  const requestPromise = client.request(PRODUCT_QUERY, {
+    variables: { handle }
+  });
+  
+  const { data } = await Promise.race([requestPromise, timeoutPromise]);
+  
+  if (!data.product) return null;
+  
+  return {
+    id: data.product.id,
+    handle: data.product.handle,
+    title: data.product.title,
+    description: data.product.description,
+    featuredImage: data.product.featuredImage,
+    images: data.product.images.edges.map((img: any) => img.node),
+    variants: data.product.variants.edges.map((variant: any) => variant.node),
+    priceRange: data.product.priceRange,
+  };
 }
 
 // Mock data for development
