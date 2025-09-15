@@ -20,7 +20,7 @@ export function CheckoutPage() {
   const [customerInfo, setCustomerInfo] = useState<CustomerInfo>({
     name: '',
     deliveryMethod: 'delivery',
-    paymentMethod: 'cash'
+    paymentMethod: 'online'
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -241,13 +241,14 @@ export function CheckoutPage() {
                   className="gap-4"
                 >
                   <div className="flex items-center gap-3 flex-row-reverse">
+                    <RadioGroupItem value="online" id="online" />
+                    <Label htmlFor="online" className="cursor-pointer">ومض</Label>
+                  </div>
+                  <div className="flex items-center gap-3 flex-row-reverse">
                     <RadioGroupItem value="cash" id="cash" />
                     <Label htmlFor="cash" className="cursor-pointer">كاش</Label>
                   </div>
-                  <div className="flex items-center gap-3 flex-row-reverse">
-                    <RadioGroupItem value="online" id="online" />
-                    <Label htmlFor="online" className="cursor-pointer">أونلاين (عن طريق Link)</Label>
-                  </div>
+
                 </RadioGroup>
               </div>
             </CardContent>
