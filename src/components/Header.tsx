@@ -32,7 +32,6 @@ export function Header() {
           />
           <div>
             <h1 className="text-xl font-bold text-foreground">زعتر سمر</h1>
-            <p className="text-sm text-muted-foreground">منتجات شامية أصيلة</p>
           </div>
         </Link>
 
