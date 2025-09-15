@@ -278,12 +278,12 @@ export function CheckoutPage() {
               
               <div className="flex justify-between font-bold text-lg">
                 <span>المجموع:</span>
+                <span>
+                  {customerInfo.deliveryMethod === 'pickup'
                     ? formatPrice(cart.subtotal)
                     : `${formatPrice(cart.subtotal)}+`
                   }
                 </span>
-              </div>
-
               </div>
 
               <Button 
@@ -291,6 +291,8 @@ export function CheckoutPage() {
                 disabled={isSubmitting || !customerInfo.name.trim()}
                 className="w-full gap-2"
                 size="lg"
+              >
+                {isSubmitting ? (
                   'جاري الإرسال...'
                 ) : (
                   <>
