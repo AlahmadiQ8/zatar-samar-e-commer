@@ -267,16 +267,23 @@ export function CheckoutPage() {
                 </span>
               </div>
               
-              <div className="flex justify-between text-sm text-muted-foreground">
-                <span>رسوم التوصيل:</span>
-                <span>حسب المنطقة</span>
-              </div>
+              {customerInfo.deliveryMethod === 'delivery' && (
+                <div className="flex justify-between text-sm text-muted-foreground">
+                  <span>رسوم التوصيل:</span>
+                  <span>حسب المنطقة</span>
+                </div>
+              )}
               
               <Separator />
               
               <div className="flex justify-between font-bold text-lg">
                 <span>المجموع:</span>
-                <span className="arabic-number">{formatPrice(cart.subtotal)}+</span>
+                <span className="arabic-number">
+                  {customerInfo.deliveryMethod === 'pickup' 
+                    ? formatPrice(cart.subtotal)
+                    : `${formatPrice(cart.subtotal)}+`
+                  }
+                </span>
               </div>
 
               <Button 
