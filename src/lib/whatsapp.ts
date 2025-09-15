@@ -86,7 +86,7 @@ export function formatPrice(amount: string | number, currencyCode: string = 'KWD
 // Get pickup location with Google Maps link
 export function getPickupLocation(): { address: string; mapsUrl: string } {
   const address = 'الفنيطيس، قطعة 3، شارع 308، منزل 7';
-  const mapsUrl = 'https://goo.gl/maps/H887haRhckgJNgep9';
+  const mapsUrl = 'https://maps.app.goo.gl/zD1ZHPPJ5NKsE3u66';
   
   return { address, mapsUrl };
 }
