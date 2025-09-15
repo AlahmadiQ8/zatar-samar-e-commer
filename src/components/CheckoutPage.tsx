@@ -20,7 +20,8 @@ export function CheckoutPage() {
   const [customerInfo, setCustomerInfo] = useState<CustomerInfo>({
     name: '',
     deliveryMethod: 'delivery',
-    paymentMethod: 'online'
+    paymentMethod: 'online',
+    address: ''
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -46,6 +47,11 @@ export function CheckoutPage() {
   const handleSubmitOrder = async () => {
     if (!customerInfo.name.trim()) {
       toast.error('يرجى إدخال اسم الفاتورة');
+      return;
+    }
+
+    if (customerInfo.deliveryMethod === 'delivery' && !customerInfo.address?.trim()) {
+      toast.error('يرجى إدخال عنوان التوصيل');
       return;
     }
 
@@ -221,6 +227,19 @@ export function CheckoutPage() {
                   </div>
                 </RadioGroup>
                 
+                {customerInfo.deliveryMethod === 'delivery' && (
+                  <div className="space-y-2">
+                    <Label htmlFor="delivery-address">العنوان أو رابط خرائط جوجل *</Label>
+                    <Input
+                      id="delivery-address"
+                      placeholder="اكتب عنوانك أو الصق رابط خرائط جوجل"
+                      value={customerInfo.address || ''}
+                      onChange={(e) => setCustomerInfo(prev => ({ ...prev, address: e.target.value }))}
+                      className="text-right"
+                    />
+                  </div>
+                )}
+                
                 {customerInfo.deliveryMethod === 'pickup' && (
                   <Button variant="outline" size="sm" asChild>
                     <a href={pickup.mapsUrl} target="_blank" rel="noopener noreferrer">عرض الموقع على الخريطة</a>
@@ -288,7 +307,11 @@ export function CheckoutPage() {
 
               <Button 
                 onClick={handleSubmitOrder}
-                disabled={isSubmitting || !customerInfo.name.trim()}
+                disabled={
+                  isSubmitting || 
+                  !customerInfo.name.trim() || 
+                  (customerInfo.deliveryMethod === 'delivery' && !customerInfo.address?.trim())
+                }
                 className="w-full gap-2"
                 size="lg"
               >

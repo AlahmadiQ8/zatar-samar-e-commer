@@ -54,6 +54,7 @@ export interface CustomerInfo {
   name: string;
   deliveryMethod: 'delivery' | 'pickup';
   paymentMethod: 'cash' | 'online';
+  address?: string;
 }
 
 export interface ShopifyResponse<T> {

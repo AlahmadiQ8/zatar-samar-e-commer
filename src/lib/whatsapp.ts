@@ -29,6 +29,9 @@ export function generateWhatsAppMessage(
   // Delivery method
   if (customerInfo.deliveryMethod === 'delivery') {
     lines.push('طريقة الاستلام: توصيل');
+    if (customerInfo.address) {
+      lines.push(`العنوان: ${customerInfo.address}`);
+    }
     lines.push('رسوم التوصيل حسب المنطقة');
   } else {
     lines.push('طريقة الاستلام: استلام من المتجر');
