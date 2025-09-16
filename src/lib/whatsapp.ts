@@ -12,31 +12,31 @@ export function generateWhatsAppMessage(
   
   // Header with emojis
   lines.push('🌿 مرحبا، هذا طلبي من زعتر سمر 🌿');
-  lines.push('═══════════════════════════');
+  lines.push('══════════════');
   lines.push('');
   
   // Order items with emojis
   lines.push('📦 *تفاصيل الطلب:*');
-  lines.push('━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+  lines.push('━━━━━━━━━━━━━');
   cartItems.forEach((item, index) => {
     const total = item.price * item.quantity;
     lines.push(`${index + 1}. 🛒 ${item.productTitle}`);
     lines.push(`   📏 النوع: ${item.variantTitle}`);
     lines.push(`   🔢 الكمية: ${item.quantity}`);
     lines.push(`   💰 السعر: ${total.toFixed(3)} د.ك`);
-    lines.push('   ─────────────────────');
+    lines.push('');
   });
   lines.push('');
   
   // Subtotal with separator
   lines.push('💳 *الإجمالي:*');
-  lines.push('━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+  lines.push('━━━━━━━━━━━━━');
   lines.push(`🏷️ إجمالي المنتجات: ${subtotal.toFixed(3)} د.ك`);
   lines.push('');
   
   // Delivery method with icons
   lines.push('🚚 *طريقة الاستلام:*');
-  lines.push('━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+  lines.push('━━━━━━━━━━━━━');
   if (customerInfo.deliveryMethod === 'delivery') {
     lines.push('📦 توصيل إلى العنوان');
     if (customerInfo.address) {
@@ -51,7 +51,7 @@ export function generateWhatsAppMessage(
   
   // Payment method with icons
   lines.push('💳 *طريقة الدفع:*');
-  lines.push('━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+  lines.push('━━━━━━━━━━━━━');
   const paymentIcon = customerInfo.paymentMethod === 'cash' ? '💵' : '💳';
   const paymentText = customerInfo.paymentMethod === 'cash' ? 'دفع كاش' : 'دفع أونلاين (ومض)';
   lines.push(`${paymentIcon} ${paymentText}`);
@@ -59,12 +59,12 @@ export function generateWhatsAppMessage(
   
   // Customer info
   lines.push('👤 *بيانات العميل:*');
-  lines.push('━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+  lines.push('━━━━━━━━━━━━━');
   lines.push(`📝 الفاتورة باسم: ${customerInfo.name}`);
   lines.push('');
   
   // Footer
-  lines.push('═══════════════════════════');
+  lines.push('══════════════');
   lines.push('🙏 شكراً لاختيارك زعتر سمر');
   lines.push('🌿 منتجات شامية أصيلة 🌿');
   
