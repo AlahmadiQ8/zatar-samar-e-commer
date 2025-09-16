@@ -60,12 +60,9 @@ export function HomePage() {
           <h1 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
             زعتر سمر
           </h1>
-          <p className="text-xl text-muted-foreground mb-6">
-            منتجات شامية أصيلة من أجود المكونات الطبيعية
-          </p>
+          <p className="text-xl text-muted-foreground mb-6">منتجات شامية أصيلة من أجود المكونات الطبيعية</p>
         </div>
       </section>
-
       {/* Products Section */}
       <section>
         <div className="flex items-center justify-between mb-4">
@@ -120,7 +117,6 @@ export function HomePage() {
           </div>
         )}
       </section>
-
       {/* Footer CTA */}
       <section className="text-center mt-16 py-12 bg-muted/30 rounded-2xl">
         <h3 className="text-2xl font-bold mb-4">
