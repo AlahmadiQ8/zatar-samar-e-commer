@@ -10,42 +10,63 @@ export function generateWhatsAppMessage(
 ): string {
   const lines: string[] = [];
   
-  // Greeting
-  lines.push('مرحبا، هذا طلبي من زعتر سمر:');
+  // Header with emojis
+  lines.push('🌿 مرحبا، هذا طلبي من زعتر سمر 🌿');
+  lines.push('═══════════════════════════');
   lines.push('');
   
-  // Order items
-  cartItems.forEach(item => {
+  // Order items with emojis
+  lines.push('📦 *تفاصيل الطلب:*');
+  lines.push('━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+  cartItems.forEach((item, index) => {
     const total = item.price * item.quantity;
-    lines.push(`${item.productTitle} - ${item.variantTitle} × ${item.quantity}`);
-    lines.push(`السعر: ${total.toFixed(3)} دينار كويتي`);
-    lines.push('');
+    lines.push(`${index + 1}. 🛒 ${item.productTitle}`);
+    lines.push(`   📏 النوع: ${item.variantTitle}`);
+    lines.push(`   🔢 الكمية: ${item.quantity}`);
+    lines.push(`   💰 السعر: ${total.toFixed(3)} د.ك`);
+    lines.push('   ─────────────────────');
   });
-  
-  // Subtotal
-  lines.push(`إجمالي المنتجات: ${subtotal.toFixed(3)} دينار كويتي`);
   lines.push('');
   
-  // Delivery method
+  // Subtotal with separator
+  lines.push('💳 *الإجمالي:*');
+  lines.push('━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+  lines.push(`🏷️ إجمالي المنتجات: ${subtotal.toFixed(3)} د.ك`);
+  lines.push('');
+  
+  // Delivery method with icons
+  lines.push('🚚 *طريقة الاستلام:*');
+  lines.push('━━━━━━━━━━━━━━━━━━━━━━━━━━━');
   if (customerInfo.deliveryMethod === 'delivery') {
-    lines.push('طريقة الاستلام: توصيل');
+    lines.push('📦 توصيل إلى العنوان');
     if (customerInfo.address) {
-      lines.push(`العنوان: ${customerInfo.address}`);
+      lines.push(`📍 العنوان: ${customerInfo.address}`);
     }
-    lines.push('رسوم التوصيل حسب المنطقة');
+    lines.push('⚠️ رسوم التوصيل حسب المنطقة');
   } else {
-    lines.push('طريقة الاستلام: استلام من المتجر');
-    lines.push('العنوان: السالمية، قطعة 3، شارع 308، منزل 7');
+    lines.push('🏪 استلام من المتجر');
+    lines.push('📍 العنوان: الفنيطيس، قطعة 3، شارع 308، منزل 7');
   }
   lines.push('');
   
-  // Payment method
-  const paymentText = customerInfo.paymentMethod === 'cash' ? 'دفع كاش' : 'دفع أونلاين (عن طريق Link)';
-  lines.push(`طريقة الدفع: ${paymentText}`);
+  // Payment method with icons
+  lines.push('💳 *طريقة الدفع:*');
+  lines.push('━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+  const paymentIcon = customerInfo.paymentMethod === 'cash' ? '💵' : '💳';
+  const paymentText = customerInfo.paymentMethod === 'cash' ? 'دفع كاش' : 'دفع أونلاين (ومض)';
+  lines.push(`${paymentIcon} ${paymentText}`);
   lines.push('');
   
-  // Customer name
-  lines.push(`الفاتورة باسم: ${customerInfo.name}`);
+  // Customer info
+  lines.push('👤 *بيانات العميل:*');
+  lines.push('━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+  lines.push(`📝 الفاتورة باسم: ${customerInfo.name}`);
+  lines.push('');
+  
+  // Footer
+  lines.push('═══════════════════════════');
+  lines.push('🙏 شكراً لاختيارك زعتر سمر');
+  lines.push('🌿 منتجات شامية أصيلة 🌿');
   
   return lines.join('\n');
 }
