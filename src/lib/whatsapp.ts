@@ -59,7 +59,7 @@ export function generateWhatsAppUrl(
   const encodedMessage = encodeURIComponent(message);
   
   // Use web URL for better compatibility
-  return `https://wa.me/${WHATSAPP_PHONE.replace('+', '')}?text=${encodedMessage}`;
+  return `https://wa.me/${WHATSAPP_PHONE}?text=${encodedMessage}`;
 }
 
 export function openWhatsApp(
