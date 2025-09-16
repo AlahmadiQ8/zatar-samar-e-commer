@@ -178,8 +178,8 @@ export function CheckoutPage() {
                 </div>
               ))}
               
-              <div className="text-center mt-6">
-                <Button variant="outline" asChild size="sm">
+              <div className="text-center mt-4">
+                <Button variant="outline" asChild>
                   <Link to="/">إضافة منتجات أخرى</Link>
                 </Button>
               </div>
