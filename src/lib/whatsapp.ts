@@ -79,8 +79,11 @@ export function generateWhatsAppUrl(
   const message = generateWhatsAppMessage(cartItems, customerInfo, subtotal);
   const encodedMessage = encodeURIComponent(message);
   
-  // Use web URL for better compatibility
-  return `https://wa.me/${WHATSAPP_PHONE}?text=${encodedMessage}`;
+  // Extract phone number without + for the new URL format
+  const phoneNumber = WHATSAPP_PHONE.replace('+', '');
+  
+  // Use new WhatsApp API format
+  return `https://api.whatsapp.com/send/?phone=%2B${phoneNumber}&text=${encodedMessage}`;
 }
 
 export function openWhatsApp(
