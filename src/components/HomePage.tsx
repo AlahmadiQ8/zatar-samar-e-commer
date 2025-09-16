@@ -57,10 +57,9 @@ export function HomePage() {
           <div className="w-24 h-24 md:w-32 md:h-32 mx-auto mb-6 flex items-center justify-center">
             <img src={logoSvg} alt="زعتر سمر" className="w-full h-full object-contain" />
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
+          <h1 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
             زعتر سمر
           </h1>
-          <p className="text-xl text-muted-foreground mb-6">منتجات شامية أصيلة من أجود المكونات الطبيعية</p>
         </div>
       </section>
       {/* Products Section */}
